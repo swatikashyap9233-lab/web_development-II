@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgb(240, 202, 202);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            width: 400px;
+        }
+        .login-box,
+        .quiz-box {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        p {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: rgb(93, 92, 92);
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid rgb(107, 106, 106);
+            border-radius: 5px;
+        }
+        input:focus {
+            outline: none;
+            border-color:
+            rgb(103, 103, 241);
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: rgb(90, 164, 200);
+        }
+        #successMessage {
+            display: none;
+            text-align: center;
+            background-color: #d4edda;
+            color: #155724;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        #quizBox {
+            display: none;
+        }
+        .question {
+            margin-bottom: 15px;
+        }
+        .option {
+            margin: 10px 0;
+        }
+        .option label {
+            cursor: pointer;
+        }
+        #submitQuiz {
+            margin-top: 15px;
+        }
+        #score{
+            display: none;
+            text-align: centre;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #d4edda;
+            color: #155724;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login-box">
+            <h1>Quiz Login</h1>
+            <p>Login to start your quiz</p>
+            <form id="loginForm">
+                <label for="username">Username</label>
+                <input
+                    type="text"
+                    id="username"
+                    placeholder="Enter your username"
+                    required>
+                <label for="password">Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter your password"
+                    required>
+                <button type="submit" id="loginButton">Login</button>
+            </form>
+        </div>
+        <div id="successMessage">
+            Login Successful! 🎉
+        </div>
+        <div class="quiz-box" id="quizBox">
+            <h1>Quiz Questions</h1>
+            <div class="question">
+                <h3>
+                    Q1. What does HTML stand for?
+                </h3>
+                <div class="option">
+                    <label>
+                        <input type="radio" name="q1" value="correct">
+                        Hyper Text Markup Language
+                    </label>
+                </div>
+                <div class="option">
+                    <label>
+                        <input type="radio" name="q1" value="wrong">
+                        High Text Machine Language
+                    </label>
+                </div>
+                <div class="option">
+                    <label>
+                        <input type="radio" name="q1" value="wrong">
+                        Hyper Tool Multi Language
+                    </label>
+                </div>
+            </div>
+            <div class="question">
+                <h3>
+                    Q2. What does CSS stand for?
+                </h3>
+                <div class="option">
+                    <label>
+                        <input type="radio" name="q2" value="correct">
+                        Cascading Style Sheets
+                    </label>
+                </div>
+                <div class="option">
+                    <label>
+                        <input type="radio" name="q2" value="wrong">
+                        Computer Style Sheets
+                    </label>
+                </div>
+
+                <div class="option">
+                    <label>
+                        <input type="radio" name="q2" value="wrong">
+                        Creative Style System
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>
+                    Q3. Which language is used for web interaction?
+                </h3>
+                <div class="option">
+                    <label>
+                        <input type="radio" name="q3" value="wrong">
+                        HTML
+                    </label>
+                </div>
+
+                <div class="option">
+                    <label>
+                        <input type="radio" name="q3" value="wrong">
+                        CSS
+                    </label>
+                </div>
+
+                <div class="option">
+                    <label>
+                        <input type="radio" name="q3" value="correct">
+                        JavaScript
+                    </label>
+                </div>
+
+            </div>
+            <button type="button" id="submitQuiz">
+                Submit Quiz
+            </button>
+
+            <div id="score"></div>
+
+        </div>
+    </div>
+    <script>
+        const loginForm = document.getElementById("loginForm");
+        const successMessage = document.getElementById("successMessage");
+        const quizBox = document.getElementById("quizBox");
+
+        loginForm.addEventListener("submit", function(event) {
+            // prevent reload after submitting the form
+            event.preventDefault();
+
+            // success msg display
+            successMessage.style.display = "block";
+
+            // this makes quiz section visible
+            quizBox.style.display = "block";
+
+            // enable scrolling
+            quizBox.scrollIntoView({
+                behavior: "smooth"
+            });
+        });
+
+        const loginButton = document.getElementById("loginButton");
+        loginButton.addEventListener("mouseover", function() {
+            loginButton.innerHTML = "Ready to Login!";
+        });
+
+        loginButton.addEventListener("mouseout", function() {
+            loginButton.innerHTML = "Login";
+        });
+
+        const submitQuiz=document.getElementById("submitQuiz");
+        const scoreBox = document.getElementById("score");
+
+        submitQuiz.addEventListener("click",function(){
+        let score=0;
+        const q1 = document.querySelector('input[name="q1"]:checked');
+        const q2 = document.querySelector('input[name="q2"]:checked');
+        const q3 = document.querySelector('input[name="q3"]:checked');
+
+        if (q1 && q1.value === "correct") {
+            score++;
+        }
+        if (q2 && q2.value === "correct") {
+            score++;
+        }
+        if (q3 && q3.value === "correct") {
+            score++;
+        }
+        scoreBox.innerHTML = 
+            "Quiz Submitted Successfully! <br>" +
+            "Your Score: " + score + " / 3";
+        scoreBox.style.display = "block";
+    });
+    </script>
+</body>
+</html>

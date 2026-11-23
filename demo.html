@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="quiz-container">
+        <h1>Online Quiz</h1>
+
+        <div id="quiz">
+            <h2 id="question">Question goes here</h2>
+
+            <div class="options">
+                <label>
+                    <input type="radio" name="answer" value="A">
+                    <span id="optionA"></span>
+                </label>
+
+                <label>
+                    <input type="radio" name="answer" value="B">
+                    <span id="optionB"></span>
+                </label>
+
+                <label>
+                    <input type="radio" name="answer" value="C">
+                    <span id="optionC"></span>
+                </label>
+
+                <label>
+                    <input type="radio" name="answer" value="D">
+                    <span id="optionD"></span>
+                </label>
+            </div>
+
+            <button id="nextBtn">Next</button>
+        </div>
+
+        <div id="result" class="result">
+            <h2>Quiz Completed!</h2>
+            <p id="score"></p>
+            <button onclick="restartQuiz()">Restart Quiz</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 100vh;
+}
+
+.quiz-container {
+    background: white;
+    width: 500px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+#question {
+    margin-bottom: 20px;
+}
+
+.options label {
+    display: block;
+    padding: 15px;
+    margin: 10px 0;
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.options label:hover {
+    background: #e8e8e8;
+}
+
+.options input {
+    margin-right: 10px;
+}
+
+#nextBtn,
+.result button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    background: #007bff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#nextBtn:hover,
+.result button:hover {
+    background: #0056b3;
+}
+
+.result {
+    display: none;
+    text-align: center;
+}
+
+.result p {
+    margin: 20px 0;
+    font-size: 20px;
+}
